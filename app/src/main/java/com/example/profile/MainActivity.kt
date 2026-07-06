@@ -28,6 +28,7 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Profile(
                         name = "Android",
+                        skills = listOf(),
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -37,25 +38,44 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Name(name: String, occupation: String, modifier: Modifier = Modifier) {
-    Column {
-        Text(
-            text = name,
-            modifier = modifier,
-            fontSize = 24.sp
-        )
-        Text(
-            text = occupation,
-            modifier = modifier,
-            fontSize = 16.sp
-        )
-    }
+fun Header(name: String, occupation: String, modifier: Modifier = Modifier) {
+    Text(
+        text = name,
+        modifier = modifier,
+        fontSize = 24.sp
+    )
+    Text(
+        text = occupation,
+        modifier = modifier,
+        fontSize = 16.sp
+    )
 }
 
 @Composable
-fun Profile(name: String, modifier: Modifier = Modifier) {
+fun SkillItem(skill: String, modifier: Modifier = Modifier) {
+    Text(
+        text = "- $skill",
+        modifier = modifier,
+        fontSize = 12.sp
+    )
+}
+
+@Composable
+fun Skills(skills: List<String>, modifier: Modifier = Modifier) {
+    Text(
+        text = "Compétences :",
+        modifier = modifier
+    )
+    skills.forEach { skill -> SkillItem(skill, modifier) }
+}
+
+@Composable
+fun Profile(name: String, skills: List<String>, modifier: Modifier = Modifier) {
     Surface(modifier = modifier) {
-        Name(name = name, "Développeur C & C++", modifier = modifier)
+        Column {
+            Header(name = name, "Développeur C & C++", modifier = modifier)
+            Skills(skills = skills, modifier = modifier)
+        }
     }
 }
 
@@ -63,6 +83,6 @@ fun Profile(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     ProfileTheme {
-        Profile("Thomas Sayen")
+        Profile("Thomas Sayen", listOf("C", "C++", "Haskell", "Python", "IBM RPG"))
     }
 }
