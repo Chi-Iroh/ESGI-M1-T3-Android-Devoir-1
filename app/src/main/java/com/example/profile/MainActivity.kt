@@ -30,6 +30,7 @@ class MainActivity : ComponentActivity() {
                     Profile(
                         name = "Android",
                         occupation = "Android",
+                        phoneNumber = "Android",
                         skills = listOf(),
                         modifier = Modifier.padding(innerPadding)
                     )
@@ -75,11 +76,19 @@ fun GitHubButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifie
 }
 
 @Composable
-fun Profile(name: String, occupation: String, skills: List<String>, modifier: Modifier = Modifier) {
+fun PhoneNumber(number: String, modifier: Modifier) {
+    Text(
+        text = "Appelez-moi au $number"
+    )
+}
+
+@Composable
+fun Profile(name: String, occupation: String, phoneNumber: String, skills: List<String>, modifier: Modifier = Modifier) {
     Surface(modifier = modifier) {
         Column {
             Header(name = name, occupation, modifier = modifier.padding(all = 16.dp))
             Skills(skills = skills, modifier = modifier)
+            PhoneNumber(phoneNumber, modifier)
             GitHubButton(text = "Voir sur GitHub", onClick = {}, modifier)
         }
     }
@@ -92,6 +101,7 @@ fun MePreview() {
         Profile(
             name = "Thomas Sayen",
             occupation = "Développeur C & C++",
+            phoneNumber = "01.02.03.04.05",
             skills = listOf("C", "C++", "Haskell", "Python", "IBM RPG"),
             modifier = Modifier.padding(24.dp) // padding externe
         )
@@ -105,6 +115,7 @@ fun JohnDoePreview() {
         Profile(
             name = "John Doe",
             occupation = "Développeur web",
+            phoneNumber = "06.07.08.09.00",
             skills = listOf("HTML", "CSS", "JavaScript", "PHP", "React"),
             modifier = Modifier.padding(24.dp) // padding externe
         )
