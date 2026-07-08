@@ -17,6 +17,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardDoubleArrowRight
+import androidx.compose.material.icons.filled.Lightbulb
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -45,6 +46,7 @@ class MainActivity : ComponentActivity() {
                         description = "Android",
                         phoneNumber = "Android",
                         skills = listOf(),
+                        projects = listOf(),
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -102,6 +104,31 @@ fun Skills(skills: List<String>, modifier: Modifier = Modifier) {
 }
 
 @Composable
+fun ProjectItem(project: String) {
+    Row() {
+        Icon(
+            imageVector = Icons.Default.Lightbulb,
+            contentDescription = "Une petite ampoule ^^"
+        )
+        Text(text = project)
+    }
+}
+
+@Composable
+fun Projects(projects: List<String>) {
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        item {
+            Text("Projets :")
+        }
+        items(items = projects) {
+            project -> ProjectItem(project)
+        }
+    }
+}
+
+@Composable
 fun GitHubButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
     Button(onClick = onClick, modifier = modifier.clickable(role = Role.Button, onClick = onClick).semantics {
         contentDescription = text
@@ -119,11 +146,12 @@ fun PhoneNumber(number: String, modifier: Modifier) {
 }
 
 @Composable
-fun Profile(name: String, occupation: String, description: String, phoneNumber: String, skills: List<String>, modifier: Modifier = Modifier) {
+fun Profile(name: String, occupation: String, description: String, phoneNumber: String, skills: List<String>, projects: List<String>, modifier: Modifier = Modifier) {
     Surface(modifier = modifier) {
         Column {
             Header(name = name, occupation, description = description, modifier = modifier.padding(all = 16.dp))
             Skills(skills = skills, modifier = modifier)
+            Projects(projects = projects)
             PhoneNumber(phoneNumber, modifier)
             GitHubButton(text = "Voir sur GitHub", onClick = {}, modifier = modifier.padding(32.dp).fillMaxWidth())
         }
@@ -140,6 +168,7 @@ fun MePreview() {
             description = "Étudiant, j'aime le bas niveau.",
             phoneNumber = "01.02.03.04.05",
             skills = listOf("C", "C++", "Haskell", "Python", "IBM RPG"),
+            projects = listOf("Émulateur CHIP-8 (C, C++, C#, Haskell, Rust)", "Compression binaire de fichiers de parties d'échecs", "Pong sur Nintendo DS"),
             modifier = Modifier.padding(24.dp) // padding externe
         )
     }
@@ -154,7 +183,8 @@ fun JohnDoePreview() {
             occupation = "Développeur web",
             description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             phoneNumber = "06.07.08.09.00",
-            skills = listOf("HTML", "CSS", "JavaScript", "PHP", "React")
+            skills = listOf("HTML", "CSS", "JavaScript", "PHP", "React"),
+            projects = listOf("Site e-commerce")
         )
     }
 }
