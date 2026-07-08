@@ -4,20 +4,21 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardDoubleArrowRight
 import androidx.compose.material.icons.filled.Lightbulb
+import androidx.compose.material.icons.filled.AcUnit
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -57,18 +58,27 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Header(name: String, occupation: String, description: String, modifier: Modifier = Modifier) {
-    Text(
-        text = name,
-        fontSize = 24.sp
-    )
-    Text(
-        text = occupation,
-        fontSize = 16.sp
-    )
-    Text(
-        text = description,
-        fontSize = 12.sp
-    )
+    Row() {
+        Column {
+            Text(
+                text = name,
+                fontSize = 24.sp
+            )
+            Text(
+                text = occupation,
+                fontSize = 16.sp
+            )
+            Text(
+                text = description,
+                fontSize = 12.sp
+            )
+        }
+        Image(
+            imageVector = Icons.Default.AcUnit,
+            contentDescription = "Il fait chaud",
+            modifier = Modifier.size(100.dp)
+        )
+    }
 }
 
 @Composable
