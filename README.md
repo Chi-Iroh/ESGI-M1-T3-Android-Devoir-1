@@ -5,6 +5,7 @@ Ce projet affiche une description professionnelle, en listant les compétences d
 ## Composants utilisés
 
 - Text: affiche du texte
+- TextField: affiche une zone de saisie de texte (ici, utilisée avec un texte prédéfini en bloquant l'écriture)
 - Icon: affiche une icône (on a utilisé des icônes préinstallées avec Material)
 - Image: affiche une image (on a utilisé une icône préinstallée avec Material)
 - Button: bouton avec une action lors de l'appui

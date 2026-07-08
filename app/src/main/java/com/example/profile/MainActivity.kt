@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardDoubleArrowRight
 import androidx.compose.material.icons.filled.Lightbulb
@@ -26,6 +27,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
@@ -154,9 +156,10 @@ fun GitHubButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifie
 
 @Composable
 fun PhoneNumber(number: String, modifier: Modifier) {
-    Text(
-        text = "Appelez-moi au $number",
-        modifier = modifier.padding(30.dp) // padding interne
+    TextField(
+        modifier = modifier.padding(30.dp), // padding interne
+        readOnly = true,
+        state = TextFieldState(initialText = "Appelez-moi au $number")
     )
 }
 
