@@ -140,7 +140,7 @@ fun Projects(projects: List<String>) {
 
 @Composable
 fun GitHubButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
-    Button(onClick = onClick, modifier = modifier.clickable(role = Role.Button, onClick = onClick).semantics {
+    Button(onClick = onClick, modifier = Modifier.fillMaxWidth().clickable(role = Role.Button, onClick = onClick).semantics {
         contentDescription = text
     }) {
         Text(text = text)
