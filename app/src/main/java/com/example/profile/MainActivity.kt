@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -21,11 +22,13 @@ import androidx.compose.material.icons.filled.Lightbulb
 import androidx.compose.material.icons.filled.AcUnit
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -70,13 +73,15 @@ fun Header(name: String, occupation: String, description: String, modifier: Modi
             )
             Text(
                 text = description,
-                fontSize = 12.sp
+                fontSize = 12.sp,
+                modifier = Modifier.width(250.dp)
             )
         }
         Image(
             imageVector = Icons.Default.AcUnit,
             contentDescription = "Il fait chaud",
-            modifier = Modifier.size(100.dp)
+            modifier = Modifier.size(100.dp),
+            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface)
         )
     }
 }
@@ -187,7 +192,7 @@ fun MePreview() {
 @Preview(showBackground = true)
 @Composable
 fun JohnDoePreview() {
-    ProfileTheme {
+    ProfileTheme(darkTheme = true) {
         Profile(
             name = "John Doe",
             occupation = "Développeur web",
