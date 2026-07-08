@@ -38,6 +38,7 @@ class MainActivity : ComponentActivity() {
                     Profile(
                         name = "Android",
                         occupation = "Android",
+                        description = "Android",
                         phoneNumber = "Android",
                         skills = listOf(),
                         modifier = Modifier.padding(innerPadding)
@@ -49,7 +50,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Header(name: String, occupation: String, modifier: Modifier = Modifier) {
+fun Header(name: String, occupation: String, description: String, modifier: Modifier = Modifier) {
     Text(
         text = name,
         fontSize = 24.sp
@@ -57,6 +58,10 @@ fun Header(name: String, occupation: String, modifier: Modifier = Modifier) {
     Text(
         text = occupation,
         fontSize = 16.sp
+    )
+    Text(
+        text = description,
+        fontSize = 12.sp
     )
 }
 
@@ -70,8 +75,8 @@ fun SkillItem(skill: String, modifier: Modifier = Modifier) {
 
 @Composable
 fun Skills(skills: List<String>, modifier: Modifier = Modifier) {
-        LazyColumn (
-        modifier = modifier.fillMaxSize(),
+    LazyColumn (
+        modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
             item {
@@ -104,10 +109,10 @@ fun PhoneNumber(number: String, modifier: Modifier) {
 }
 
 @Composable
-fun Profile(name: String, occupation: String, phoneNumber: String, skills: List<String>, modifier: Modifier = Modifier) {
+fun Profile(name: String, occupation: String, description: String, phoneNumber: String, skills: List<String>, modifier: Modifier = Modifier) {
     Surface(modifier = modifier) {
         Column {
-            Header(name = name, occupation, modifier = modifier.padding(all = 16.dp))
+            Header(name = name, occupation, description = description, modifier = modifier.padding(all = 16.dp))
             Skills(skills = skills, modifier = modifier)
             PhoneNumber(phoneNumber, modifier)
             GitHubButton(text = "Voir sur GitHub", onClick = {}, modifier = modifier.padding(32.dp).fillMaxWidth())
@@ -122,6 +127,7 @@ fun MePreview() {
         Profile(
             name = "Thomas Sayen",
             occupation = "Développeur C & C++",
+            description = "Étudiant, j'aime le bas niveau.",
             phoneNumber = "01.02.03.04.05",
             skills = listOf("C", "C++", "Haskell", "Python", "IBM RPG"),
             modifier = Modifier.padding(24.dp) // padding externe
@@ -136,6 +142,7 @@ fun JohnDoePreview() {
         Profile(
             name = "John Doe",
             occupation = "Développeur web",
+            description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             phoneNumber = "06.07.08.09.00",
             skills = listOf("HTML", "CSS", "JavaScript", "PHP", "React")
         )
